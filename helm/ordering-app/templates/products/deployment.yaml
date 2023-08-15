@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      containers:
+        - name: products
+          image: ginsp/ordering_app_products:latest
+          ports:
+            - containerPort: 3002
+          env:
+            - name: PORT
+              value: '3002'
